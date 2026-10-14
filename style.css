@@ -1,48 +1,397 @@
 /* charity: water yellow, with deep blue for readable text. */
-* { box-sizing: border-box; }
-body { margin: 0; padding: 24px 16px; background: #edf6f7; color: #163c4a; font-family: Avenir, Arial, sans-serif; }
-.container { max-width: 640px; margin: 0 auto; padding: 32px; background: #fff; border-top: 8px solid #ffc907; border-radius: 16px; box-shadow: 0 12px 40px #163c4a12; }
-header { text-align: center; }
-.logo { width: 220px; max-width: 100%; height: auto; }
-.eyebrow { margin: 24px 0 8px; text-transform: uppercase; font-size: 11px; font-weight: bold; letter-spacing: 2px; }
-h1 { margin: 0; font-size: clamp(36px, 8vw, 52px); letter-spacing: -2px; }
-.tagline { margin: 8px 0 24px; }
-.instructions { background: #fff9df; padding: 16px 20px; border-radius: 10px; }
-h2 { font-size: 17px; margin: 0 0 8px; }
-.instructions p { font-size: 14px; line-height: 1.5; margin: 0; }
-.instructions .keyboard-help { font-size: 12px; margin-top: 8px; }
-.stats { display: flex; justify-content: space-around; gap: 8px; margin: 22px 0 10px; text-align: center; }
-.stats p { margin: 0; font-size: 13px; }
-.stats strong { display: block; font-size: 32px; margin-top: 3px; }
-.stats small { font-size: 16px; }
-.achievement { text-align: center; min-height: 44px; margin: 8px 0; font-size: 14px; line-height: 1.5; }
-.board { position: relative; max-width: 390px; margin: auto; }
-.game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-button { font: inherit; font-weight: bold; cursor: pointer; border: 2px solid transparent; touch-action: manipulation; }
-.grid-cell { min-width: 0; width: 100%; aspect-ratio: 1; padding: 0; border-radius: 12px; background: #e8f2f3; display: flex; align-items: center; justify-content: center; }
-.grid-cell:disabled { cursor: default; }
-.grid-cell[data-item="can"] { background: #fff2b5; }
-.water-can { width: 85%; height: 85%; object-fit: contain; pointer-events: none; animation: pop-up 180ms ease-out; }
-.grid-cell[data-item="obstacle"] { background: #ffe2dd; border: 2px dashed #a52c23; color: #94251c; }
-.obstacle { display: flex; flex-direction: column; font-size: 12px; pointer-events: none; }
-.obstacle b { font-size: 38px; line-height: 1; }
-.controls { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
-.controls button { min-height: 48px; padding: 12px 24px; border-radius: 8px; background: #ffc907; color: #163c4a; }
-.controls .secondary { background: white; border-color: #163c4a; }
-.controls button:disabled { opacity: .55; cursor: default; }
-button:focus-visible, a:focus-visible { outline: 3px solid #126cb2; outline-offset: 3px; }
-.controls button:not(:disabled):hover { filter: brightness(.94); }
-footer { margin-top: 26px; font-size: 12px; text-align: center; line-height: 1.8; }
-a { color: #165d7a; }
-.celebration { position: absolute; inset: 20% 0; display: grid; place-content: center; text-align: center; background: #ffc907f2; border-radius: 16px; color: #163c4a; font-size: 26px; font-weight: bold; pointer-events: none; animation: pop-up 500ms ease-out; }
-[hidden] { display: none !important; }
-@keyframes pop-up { from { transform: scale(.8); opacity: .4; } to { transform: scale(1); opacity: 1; } }
-@media (max-width: 480px) {
-  body { padding: 12px 10px; }
-  .container { padding: 22px 16px; }
-  .instructions { padding: 14px; }
-  .game-grid { gap: 8px; }
-  .controls button { padding: 12px 18px; }
+* {
+  box-sizing: border-box;
 }
-/* Respect players who prefer less movement. */
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
+
+body {
+  margin: 0;
+  padding: 24px 16px;
+  background: #edf6f7;
+  color: #163c4a;
+  font-family: 'Montserrat', 'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px;
+  background: #fff;
+  border-top: 8px solid #ffc907;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px #163c4a12;
+}
+
+header {
+  text-align: center;
+}
+
+.logo {
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+.eyebrow {
+  margin: 24px 0 8px;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #165d7a;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(34px, 7vw, 48px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  color: #163c4a;
+}
+
+.tagline {
+  margin: 8px 0 20px;
+  font-size: 16px;
+  color: #4a6773;
+}
+
+.instructions {
+  background: #fff9df;
+  padding: 16px 20px;
+  border-radius: 10px;
+  border-left: 4px solid #ffc907;
+}
+
+h2 {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #163c4a;
+}
+
+.instructions p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.instructions .keyboard-help {
+  font-size: 12px;
+  margin-top: 8px;
+  color: #4a6773;
+}
+
+/* Difficulty Selector Section */
+.difficulty-section {
+  margin: 18px 0 10px;
+  padding: 12px 16px;
+  background: #f4fafb;
+  border: 1px solid #d2e7ea;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.difficulty-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.difficulty-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #163c4a;
+}
+
+#difficulty-select {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #163c4a;
+  background: #ffffff;
+  border: 2px solid #163c4a;
+  border-radius: 8px;
+  padding: 8px 14px;
+  min-height: 44px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+#difficulty-select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #eef4f5;
+}
+
+.difficulty-rules {
+  font-size: 13px;
+  margin: 8px 0 0;
+  color: #165d7a;
+}
+
+/* Stats display */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+  margin: 18px 0 10px;
+  text-align: center;
+}
+
+.stats p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #55727d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stats strong {
+  display: block;
+  font-size: 32px;
+  margin-top: 3px;
+  color: #163c4a;
+}
+
+.stats small {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.achievement {
+  text-align: center;
+  min-height: 44px;
+  margin: 10px 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #163c4a;
+  padding: 4px 8px;
+}
+
+/* Board and Grid */
+.board {
+  position: relative;
+  max-width: 390px;
+  margin: 0 auto;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+button {
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  border: 2px solid transparent;
+  touch-action: manipulation;
+}
+
+.grid-cell {
+  min-width: 0;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 0;
+  border-radius: 12px;
+  background: #e8f2f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  transition: background-color 120ms ease;
+}
+
+.grid-cell:disabled {
+  cursor: default;
+}
+
+.grid-cell[data-item="can"] {
+  background: #fff2b5;
+  border-color: #ffc907;
+}
+
+.water-can {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  pointer-events: none;
+  animation: pop-up 180ms ease-out;
+}
+
+.grid-cell[data-item="obstacle"] {
+  background: #ffe2dd;
+  border: 2px dashed #a52c23;
+  color: #94251c;
+}
+
+.obstacle {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.obstacle b {
+  font-size: 38px;
+  line-height: 1;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.controls button {
+  min-height: 48px;
+  min-width: 110px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: #ffc907;
+  color: #163c4a;
+  font-size: 15px;
+}
+
+.controls .secondary {
+  background: #ffffff;
+  border: 2px solid #163c4a;
+  color: #163c4a;
+}
+
+.controls button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+button:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 3px solid #126cb2;
+  outline-offset: 3px;
+}
+
+.controls button:not(:disabled):hover {
+  filter: brightness(0.94);
+}
+
+.controls button:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+/* Footer with visible charity: water links */
+.game-footer {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #dce8ea;
+  font-size: 13px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.footer-mission {
+  margin: 0 0 10px;
+  color: #4a6773;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-divider {
+  color: #ffc907;
+  font-weight: bold;
+}
+
+a {
+  color: #126cb2;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: #0a4c80;
+  text-decoration: none;
+}
+
+.celebration {
+  position: absolute;
+  inset: 15% 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  background: #ffc907f5;
+  border-radius: 16px;
+  color: #163c4a;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.3;
+  pointer-events: none;
+  animation: pop-up 400ms ease-out;
+  box-shadow: 0 8px 30px #163c4a25;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@keyframes pop-up {
+  from {
+    transform: scale(0.8);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 12px 10px;
+  }
+  .container {
+    padding: 20px 14px;
+  }
+  .instructions {
+    padding: 14px;
+  }
+  .game-grid {
+    gap: 8px;
+  }
+  .controls button {
+    flex: 1 1 120px;
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+  .footer-links {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .footer-divider {
+    display: none;
+  }
+}
+
+/* Respect players who prefer less movement */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

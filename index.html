@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Water Quest | charity: water</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
   <script src="script.js" defer></script>
 </head>
@@ -15,26 +18,56 @@
       <h1>Water Quest</h1>
       <p class="tagline">Ready, set, collect!</p>
     </header>
+
     <section class="instructions" aria-labelledby="instructions-title">
       <h2 id="instructions-title">Your 30-second mission</h2>
-      <p>Tap the yellow jerry cans for <strong>+1 point</strong> each. Avoid the red <strong>× obstacles (−1 point)</strong>. Score <strong>20 or more</strong> before time runs out to win!</p>
+      <p id="instructions-body">Tap the yellow jerry cans for <strong>+1 point</strong> each. Avoid the red <strong>× obstacles (−1 point)</strong>. Score <strong>20 or more</strong> before time runs out to win!</p>
       <p class="keyboard-help">Keyboard: Tab to a square, then Enter or Space to collect. Each item counts once. Reset starts fresh.</p>
     </section>
+
+    <section class="difficulty-section" aria-label="Game difficulty selection">
+      <div class="difficulty-row">
+        <label for="difficulty-select" class="difficulty-label">Difficulty:</label>
+        <select id="difficulty-select" aria-label="Select game difficulty">
+          <option value="easy">Easy (15 pts in 40s)</option>
+          <option value="normal" selected>Normal (20 pts in 30s)</option>
+          <option value="hard">Hard (25 pts in 25s)</option>
+        </select>
+      </div>
+      <p id="difficulty-rules" class="difficulty-rules" aria-live="polite">Current mode: <strong>Normal</strong> — Collect <strong>20 points</strong> in <strong>30 seconds</strong></p>
+    </section>
+
     <div class="stats">
       <p>Score <strong id="current-cans" aria-live="polite" aria-atomic="true">0</strong></p>
-      <p>Goal <strong>20</strong></p>
+      <p>Goal <strong id="goal-cans">20</strong></p>
       <p>Time left <strong><span id="timer">30</span><small>s</small></strong></p>
     </div>
+
     <p id="achievements" class="achievement" role="status" aria-live="polite" aria-atomic="true">Press Start Game when you’re ready.</p>
+
     <div class="board">
       <div class="game-grid" role="group" aria-label="Water Quest game board" aria-describedby="instructions-title"></div>
       <div id="celebration" class="celebration" aria-hidden="true" hidden>★ &nbsp; ✦ &nbsp; ★<br>You made a splash!</div>
     </div>
+
     <div class="controls">
       <button id="start-game" type="button">Start Game</button>
       <button id="reset-game" class="secondary" type="button">Reset</button>
+      <button id="mute-button" class="secondary" type="button" aria-pressed="false" aria-label="Mute sound effects">🔊 Sound: ON</button>
     </div>
-    <footer>A game inspired by a mission: clean water for everyone.<br><a href="https://www.charitywater.org/">Learn about charity: water ↗</a></footer>
+
+    <!-- Hidden audio elements for sound effects (activated by user interaction) -->
+    <audio id="sound-collect" src="audio/collect.wav" preload="auto"></audio>
+    <audio id="sound-win" src="audio/win.wav" preload="auto"></audio>
+
+    <footer class="game-footer">
+      <p class="footer-mission">A game inspired by a mission: clean and safe water for everyone.</p>
+      <div class="footer-links">
+        <a href="https://www.charitywater.org/" target="_blank" rel="noopener noreferrer">Learn about charity: water ↗</a>
+        <span class="footer-divider" aria-hidden="true">•</span>
+        <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener noreferrer">Donate to charity: water ↗</a>
+      </div>
+    </footer>
   </main>
 </body>
 </html>

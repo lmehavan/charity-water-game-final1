@@ -1,84 +1,74 @@
-# charity: water – Water Quest Game Starter
+# charity: water – Water Quest
 
-In this game, users tap charity: water’s signature yellow jerry cans as fast as they can to earn points. You’ll be working from a partially built version of the game. Some functionality is already provided, and your job is to complete the rest.
+Water Quest is an interactive, fast-paced web game inspired by **charity: water**’s mission to bring clean and safe drinking water to people around the world. In this game, players tap charity: water’s signature yellow jerry cans to collect water points while avoiding red obstacles.
 
-## What’s Already Done
+---
 
-The starter files already include:
+## Features & Gameplay
 
-- A **heading and tagline**
-- A **start button**
-- A **game container** displaying a grid
-- A **placeholder timer and score** (not functional yet)
-- A **logo image** from charity: water
-- Working code that:
-  - Starts the game when the start button is clicked  
-  - Makes jerry cans pop up randomly
+### 1. Meaningful Difficulty Modes
+Players can choose their challenge level before starting a round. The selected rules, time limit, and target score are displayed prominently:
+- **Easy Mode**: Collect **15 points** in **40 seconds** (relaxed spawn pace for beginners).
+- **Normal Mode**: Collect **20 points** in **30 seconds** (balanced default challenge).
+- **Hard Mode**: Collect **25 points** in **25 seconds** (fast spawn rate for seasoned players).
 
-## What You Need to Add
+*Difficulty selection is locked during an active round to prevent changing rules mid-game and unlocks upon reset or completion.*
 
-Here’s what you're required to implement to bring the game to life:
+### 2. Reliable Interactive Gameplay
+- **Immediate DOM feedback**: When a yellow jerry can or obstacle is clicked, it vanishes instantly and updates the score without delay.
+- **Single-count guarantee**: Each item is consumed immediately upon interaction, ensuring double-clicks or repeated taps cannot register more than once.
+- **Scoring**:
+  - Yellow Jerry Can: **+1 point**
+  - Red Obstacle (×): **−1 point** (scores can dip below zero)
+- **Time cutoff**: Scoring stops strictly when time runs out.
 
-### Game Functionality
+### 3. Milestone Announcements
+In-game status updates motivate players as they progress toward their target score. Milestones are evaluated using an array of motivational messages paired with conditional logic:
+- **Halfway Milestone**: Reaching 50% of the target goal (e.g., 8 on Easy, 10 on Normal, 13 on Hard).
+- **Goal Reached**: Achieving or surpassing the required goal before time expires.
+- **End-of-Game Outcome**: Randomized victory celebrations or encouraging try-again messages selected from winning and losing arrays.
 
-- **Update the score**
-  - +1 point for each can clicked  
+### 4. Sound Effects & Mute Control
+- **Water Drop Collect Sound (`audio/collect.wav`)**: Cheerful upward droplet bloop when collecting a can.
+- **Victory Chime (`audio/win.wav`)**: Triumphant ascending fanfare upon reaching the goal.
+- **Mute Toggle**: A dedicated button (`🔊 Sound: ON` / `🔇 Sound: OFF`) lets players mute or unmute audio at any time.
+- **Audio Policy Compliant**: Audio never autoplays before user interaction.
+- **Audio Licensing & Attribution**: Procedurally synthesized under the **Creative Commons Zero (CC0 1.0 Universal) Public Domain Dedication**. Source script provided in `scripts/generate_audio.py` and documented in `audio/LICENSE.txt`.
 
-- **Add a 30-second timer**
-  - When the timer reaches 0, the game ends  
+### 5. charity: water Brand Design & Typography
+- Styled using charity: water brand guidelines:
+  - **Water Can Yellow**: `#ffc907`
+  - **Charity Deep Blue**: `#163c4a`
+  - **Clean Slate Background**: `#edf6f7`
+- Typography uses **Montserrat** (Google Fonts) paired with **Proxima Nova** system fallbacks to replicate charity: water's signature geometric aesthetic.
+- Fully responsive across mobile (320px, 390px, 480px) and desktop screens with minimum 44×44px accessible touch targets and keyboard accessibility (Tab navigation + Enter/Space to collect).
 
-- **Display a message when the game ends**
-  - If the player scores **20 or more points**, show a **winning** message  
-  - If the player scores **less than 20 points**, show a **"try again"** message  
-  - Create one array of possible winning messages and one array of losing messages  
-  - Depending on whether the user wins or loses, randomly pick and display a message from the appropriate array  
+### 6. Visible charity: water Footer
+A persistent, high-contrast footer provides direct links to charity: water’s official websites:
+- [Learn about charity: water](https://www.charitywater.org/)
+- [Donate to charity: water](https://www.charitywater.org/donate)
 
-### Visual Styling
-
-- **Add charity: water branding**
-  
-  - Use the provided logo  
-  - Use the [charity: water brand guidelines](https://drive.google.com/file/d/1ct4zYRIwHAtxoNQoeaVwWYPdnruSC6sr/view) to stay on-brand with colors and styling
-  - Add styling rules to ensure your game layout adjusts well across different screen sizes
-
-These are the minimum requirements, but if you'd like an additional challenge go ahead and give the LevelUps a shot! For example, you could add logic to decrease the user's score if they miss a jerry can. Have fun and make the game your own!
-
-If you have any questions or need any assistance with your code, reach out to the HelpHub or attend a Drop-In Hour. You got this!!
-
-
-## Completed game
-
-Collect yellow cans for **+1 point** each and avoid red × obstacles, which cost
-**1 point** each (scores can go below zero). Each item can only be clicked once.
-New items appear every 0.75 seconds. Reach **20 points in 30 seconds** to win.
-The score updates immediately; scoring and spawning stop when time runs out.
-The game picks a random message from separate winning and losing arrays and
-shows a celebration for a win. Reset clears both timers and restores the initial
-screen. You can also use Tab and Enter/Space to play.
+---
 
 ## Preview in a Codespace
 
-1. Run **Terminal → Run Task → Preview Water Quest**, or run
-   `python3 -m http.server 8000` in the terminal.
-2. Open the **Ports** panel, find port **8000**, and select **Open in Browser**.
-3. To stop the preview server, press Ctrl+C in its terminal.
+1. Run the preview task or start Python's built-in HTTP server:
+   ```bash
+   python3 -m http.server 8000
+   ```
+2. Open the **Ports** panel, locate port **8000**, and select **Open in Browser** (or navigate to `http://localhost:8000`).
+3. Press `Ctrl+C` in the terminal when you wish to stop the server.
 
-This project uses plain HTML, CSS, and JavaScript with relative asset paths and
-no build step. For GitHub Pages, select the branch containing these files and
-**/ (root)** in the repository's **Settings → Pages** deployment settings.
+---
 
-## Validation
+## Verification & Testing
 
-Browser checks used a controlled clock to verify the full 30-second round:
-
-- Clicking a can twice adds only 1 point; clicking an obstacle twice subtracts only 1.
-- The countdown updates, repeated starts do not restart it, and expiration clears the board.
-- A final score of 19 loses; 20 wins and shows the celebration.
-- Scores stay unchanged after expiration.
-- Reset during play stops spawning/countdown and restores score 0 and time 30.
-- Reset after a win removes the celebration; a new round works normally.
-- Enter activates a focused can button.
-- At 320px, 390px, and 1440px widths, there is no horizontal overflow,
-  images load, and all buttons are at least 44 × 44 CSS pixels.
-
-JavaScript syntax checking and editor diagnostics also passed.
+The implementation has been verified for:
+- **Difficulty Modes**: Correct goals and timers for Easy (15 pts / 40s), Normal (20 pts / 30s), and Hard (25 pts / 25s). Dropdown disables during active play and re-enables on reset.
+- **Scoring & Obstacles**: Reliable immediate DOM removal on click; no duplicate points on multi-click.
+- **Timer Management**: Timers clear cleanly on Reset; repeated clicks on Start do not generate multiple timers; scoring halts immediately upon expiration.
+- **Outcomes**: Winning celebration and victory chime trigger at or above goal; try-again messages trigger below goal.
+- **Milestones**: Status updates at 50% and 100% goal completion.
+- **Audio & Mute**: Sounds play on collection and victory; mute button silences audio; no autoplay on page load.
+- **Footer Links**: Working external links to `charitywater.org` and `charitywater.org/donate`.
+- **Responsive Layout**: Validated across small screens (320px–480px) and wide desktop viewports without overflow.

@@ -1,0 +1,16 @@
+Audio Licensing & Attribution
+==============================
+
+The sound effect files in this directory:
+- `audio/collect.wav` (Water can collection droplet / bloop sound)
+- `audio/win.wav` (Celebratory victory fanfare / chime)
+
+Source:
+Procedurally generated using Python's mathematical audio synthesis script (`scripts/generate_audio.py`).
+
+License:
+Creative Commons Zero (CC0 1.0 Universal) Public Domain Dedication.
+You can copy, modify, distribute, and perform the work, even for commercial purposes, all without asking permission.
+
+For more details, see: https://creativecommons.org/publicdomain/zero/1.0/
+
