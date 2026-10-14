@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Water Quest | charity: water</title>
+  <link href="style.css" rel="stylesheet">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <img class="logo" src="img/cw_logo_horizontal.png" alt="charity: water" width="500" height="59">
+      <p class="eyebrow">A little focus. A big splash.</p>
+      <h1>Water Quest</h1>
+      <p class="tagline">Ready, set, collect!</p>
+    </header>
+    <section class="instructions" aria-labelledby="instructions-title">
+      <h2 id="instructions-title">Your 30-second mission</h2>
+      <p>Tap the yellow jerry cans for <strong>+1 point</strong> each. Avoid the red <strong>× obstacles (−1 point)</strong>. Score <strong>20 or more</strong> before time runs out to win!</p>
+      <p class="keyboard-help">Keyboard: Tab to a square, then Enter or Space to collect. Each item counts once. Reset starts fresh.</p>
+    </section>
+    <div class="stats">
+      <p>Score <strong id="current-cans" aria-live="polite" aria-atomic="true">0</strong></p>
+      <p>Goal <strong>20</strong></p>
+      <p>Time left <strong><span id="timer">30</span><small>s</small></strong></p>
+    </div>
+    <p id="achievements" class="achievement" role="status" aria-live="polite" aria-atomic="true">Press Start Game when you’re ready.</p>
+    <div class="board">
+      <div class="game-grid" role="group" aria-label="Water Quest game board" aria-describedby="instructions-title"></div>
+      <div id="celebration" class="celebration" aria-hidden="true" hidden>★ &nbsp; ✦ &nbsp; ★<br>You made a splash!</div>
+    </div>
+    <div class="controls">
+      <button id="start-game" type="button">Start Game</button>
+      <button id="reset-game" class="secondary" type="button">Reset</button>
+    </div>
+    <footer>A game inspired by a mission: clean water for everyone.<br><a href="https://www.charitywater.org/">Learn about charity: water ↗</a></footer>
+  </main>
+</body>
+</html>
